@@ -1,4 +1,4 @@
-from src.masks.functions import get_mask_card_number, get_mask_account
+from src.functions import get_mask_card_number, get_mask_account
 
 credit_card_number = "8123456789112236"
 masked_card_number = get_mask_card_number(credit_card_number)
