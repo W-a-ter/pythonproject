@@ -2,7 +2,8 @@ from src.masks.functions import get_mask_card_number, get_mask_account
 
 
 def mask_account_card(card_type: str) -> str:
-    '''функция, котопая принимает на вход строку с информацией — тип карты/счета и номер карты/счета.'''
+    '''функция, которая принимает на вход строку с информацией
+     — тип карты/счета и номер карты/счета.'''
     masked_string = ""
     if "Visa Platinum" in card_type:
         num_card = card_type.replace("Visa Platinum ", "")

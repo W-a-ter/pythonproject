@@ -18,4 +18,3 @@ def sort_by_date(info: list, date=True) -> list[str]:
     else:
         sorted_list = sorted(info, key=lambda x: x["date"])
     return sorted_list
-
