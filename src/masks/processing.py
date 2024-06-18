@@ -1,4 +1,4 @@
-def filter_by_state(inform: list, state="EXECUTED") -> list[str]:
+def filter_by_state(inform: list[dict], state="EXECUTED") -> list[dict]:
     """функция, которая принимает на вход список словарей"""
 
     my_list = []
@@ -10,7 +10,7 @@ def filter_by_state(inform: list, state="EXECUTED") -> list[str]:
     return my_list
 
 
-def sort_by_date(info: list, date=True) -> list[str]:
+def sort_by_date(info: list[dict], date=True) -> list[dict]:
     """функция, которая принимает на вход список словарей"""
 
     if date is True:

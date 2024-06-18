@@ -12,5 +12,5 @@ git@github.com:W-a-ter/Pythonproject.git
 '''
 2. Установите зависимости:
 '''
-pip install -r requirements.txt
+pip install package-name
 '''
