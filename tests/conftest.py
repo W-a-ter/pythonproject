@@ -41,3 +41,12 @@ def number_card():
 @pytest.fixture
 def num_account():
     return 12345678901234567890
+
+
+@pytest.fixture
+def data_info():
+    return "2018-07-11T02:26:18.671407"
+
+@pytest.fixture
+def exp_data():
+    return "11.07.2018"
