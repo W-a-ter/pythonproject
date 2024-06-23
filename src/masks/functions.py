@@ -1,18 +1,27 @@
-def get_mask_card_number(card_number):
-    """Маскируем номер карты"""
-    masked_number = ""
-    for i in range(len(card_number)):
-        if i < 6 or i >= len(card_number) - 4:
-            masked_number += card_number[i]
-        elif card_number[i] != " ":
-            masked_number += "*"
-        else:
-            masked_number += " "
+def get_mask_card_number(number_card: int | str) -> str:
+    """
+    Функция принимает номер карты и возвращает
+    номер карты с маскировкой 6ти цифр (с 7 - 12)
 
-    return masked_number
+    p.s. вход преобразуем в строку, заменяем цифры с 7-12,
+    по индексу делим номер карты на 4 блока,
+    возвращаем, разделяем пробелом
+    """
+
+    number_card_string = str(number_card)
+    mask_card = number_card_string.replace(number_card_string[6:12], "******")
+    number_card_divide = mask_card[:4], mask_card[4:8], mask_card[8:12], mask_card[12:]
+    mask_number_card = " ".join(number_card_divide)
+
+    return mask_number_card
 
 
-def get_mask_account(account_number):
-    """Маскируем номер счета"""
-    masked_number = "**" + account_number[-4:]
-    return masked_number
+def get_mask_account(account_number: int | str) -> str:
+    """
+    Функция принимает номер счёта и возвращает маскировку счета
+    в формате: "** 4цифры счета"
+    """
+
+    account_number_string = str(account_number)
+
+    return f"**{account_number_string[-4:]}"

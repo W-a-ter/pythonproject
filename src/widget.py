@@ -1,21 +1,26 @@
 from src.masks.functions import get_mask_card_number, get_mask_account
 
 
-def mask_account_card(card_type: str) -> str:
-    """функция, которая принимает на вход строку с информацией
-    — тип карты/счета и номер карты/счета."""
-    masked_string = ""
-    if "Visa Platinum" in card_type:
-        num_card = card_type.replace("Visa Platinum ", "")
-        masked_string += "Visa Platinum " + get_mask_card_number(num_card)
-    elif "Maestro" in card_type:
-        num_card = card_type.replace("Maestro ", "")
-        masked_string += "Maestro " + get_mask_card_number(num_card)
-    else:
-        num_card = card_type.replace("Счет ", "")
-        masked_string += "Счет " + get_mask_account(num_card)
-    return masked_string
+def mask_account_card(account_information: str) -> str:
+    """
+    Функция принимает номер карты\\счета (в формате "карта\\счет (номер карты\\счета)
+    и возвращает строку с замаскированным номером карты\\счета
+    """
+    masks_account_information = ""
+    account_number = ""
 
+    for slice_info in account_information.split():
+        if slice_info.isalpha() is True:
+            masks_account_information += slice_info + " "
+        elif slice_info.isdigit() is True:
+            account_number += slice_info
+
+    if masks_account_information == "Счет ":
+        masks_account_information += get_mask_account(account_number)
+    else:
+        masks_account_information += get_mask_card_number(account_number)
+
+    return masks_account_information
 
 def get_data(data_string: str) -> str:
     """функция, которая принимает на вход строку"""
