@@ -2,9 +2,9 @@ from src.masks.functions import get_mask_card_number, get_mask_account
 
 
 def mask_account_card(account_information: str) -> str:
-    """
-    Функция принимает номер карты\\счета (в формате "карта\\счет (номер карты\\счета)
-    и возвращает строку с замаскированным номером карты\\счета
+    """ Функция принимает номер карты или счета
+    и возвращает строку с замаскированным
+    номером карты\\счета
     """
     masks_account_information = ""
     account_number = ""
@@ -21,6 +21,7 @@ def mask_account_card(account_information: str) -> str:
         masks_account_information += get_mask_card_number(account_number)
 
     return masks_account_information
+
 
 def get_data(data_string: str) -> str:
     """функция, которая принимает на вход строку"""

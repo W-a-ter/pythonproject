@@ -10,7 +10,8 @@ def get_mask_card_number(number_card: int | str) -> str:
 
     number_card_string = str(number_card)
     mask_card = number_card_string.replace(number_card_string[6:12], "******")
-    number_card_divide = mask_card[:4], mask_card[4:8], mask_card[8:12], mask_card[12:]
+    number_card_divide = (mask_card[:4], mask_card[4:8], mask_card[8:12],
+                          mask_card[12:])
     mask_number_card = " ".join(number_card_divide)
 
     return mask_number_card
