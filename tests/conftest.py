@@ -47,6 +47,7 @@ def num_account():
 def data_info():
     return "2018-07-11T02:26:18.671407"
 
+
 @pytest.fixture
 def exp_data():
     return "11.07.2018"
@@ -131,4 +132,3 @@ def dict_list():
                 "to": "Счет 14211924144426031657"
             }
         ]
-

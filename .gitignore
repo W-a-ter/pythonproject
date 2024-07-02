@@ -5,3 +5,4 @@ Flake8
 .mypy_cache/
 venv
 __pycache__
+.coverage
