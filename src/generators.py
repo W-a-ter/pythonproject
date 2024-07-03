@@ -2,12 +2,14 @@ from typing import Any
 
 
 def filter_by_currency(transactions: list, currency: str) -> Any:
+    """список словарей с банковскими операциями"""
     for i in transactions:
         if i["operationAmount"]["currency"]["code"] == currency:
             yield i
 
 
 def transaction_descriptions(transactions: list) -> Any:
+    """принимает список словарей"""
     for i in transactions:
         yield i["description"]
 
