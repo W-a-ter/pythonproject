@@ -1,4 +1,3 @@
-import pytest
 from src. generators import filter_by_currency, card_number_generator
 
 
@@ -10,4 +9,4 @@ def test_filter_by_currensy(dict_list):
 
 def test_card_number_generator():
     for card_number in card_number_generator(1, 5):
-        print(card_number)
+        assert card_number
