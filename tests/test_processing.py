@@ -1,4 +1,4 @@
-from src.masks.processing import filter_by_state, sort_by_date
+from src.processing import filter_by_state, sort_by_date
 
 
 def test_processing_func_sort(list_dict, list_sort_by_date):

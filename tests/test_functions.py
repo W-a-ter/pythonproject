@@ -1,4 +1,4 @@
-from src.masks.functions import get_mask_account, get_mask_card_number
+from src.functions import get_mask_account, get_mask_card_number
 
 
 def test_get_mask_account(num_account):
