@@ -1,4 +1,14 @@
 import json
+import logging
+
+""" создаем логгер для логирования функций и пишем логи в директорию logs"""
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s:%(name)s - %(levelname)s - %(message)s",
+    filename="../logs/utils.log",  # Запись логов в файл
+    filemode="w",
+)  # Перезапись файла при каждом запуске
+text = logging.getLogger("utils.py")
 
 
 def my_file(my_str: str) -> list[dict]:
@@ -12,8 +22,11 @@ def my_file(my_str: str) -> list[dict]:
             elif info is []:
                 return []
             else:
+                text.info('функция отработала')
                 return info
     except FileNotFoundError:
+        text.warning('File_not_found')
         return []
     except json.decoder.JSONDecodeError:
+        text.critical('json.DecodeError!!!')
         return []
