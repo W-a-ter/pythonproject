@@ -151,3 +151,20 @@ def dict_list_my():
             "from": "Счет 75106830613657916952",
             "to": "Счет 11776614605963066702"
             }
+
+
+@pytest.fixture
+def info_transaction():
+    return [
+      {
+        "id": 441945886,
+        "state": "EXECUTED",
+        "date": "2019-08-26T10:50:58.294041",
+        "operationAmount": {
+          "amount": "31957.58",
+          "currency": {
+            "code": "RUB"
+          }
+        }
+      }
+    ]
