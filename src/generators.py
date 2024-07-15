@@ -20,6 +20,6 @@ def card_number_generator(first: int, last: int) -> Any:
         card_num = str(card)
         while len(card_num) < 16:
             card_num = "0" + card_num
-        formatted_card_number = f"{card_num[0:4]} {card_num[4:8]} {card_num[8:12]} {card_num[-4:]}"
+        formatted_card_number = (f"{card_num[0:4]} {card_num[4:8]} "
+                                 f"{card_num[8:12]} {card_num[-4:]}")
         yield formatted_card_number
-
