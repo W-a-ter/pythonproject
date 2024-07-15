@@ -45,3 +45,5 @@ def get_mask_account(account_number: int | str) -> str:
     logger.info("Маскировка номера счёта клиента")
 
     return f"**{account_number_string[-4:]}"
+
+

@@ -30,3 +30,5 @@ def my_file(my_str: str) -> list[dict]:
     except json.decoder.JSONDecodeError:
         text.critical('json.DecodeError!!!')
         return []
+
+print(my_file(''))
