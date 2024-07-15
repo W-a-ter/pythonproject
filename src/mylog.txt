@@ -1,0 +1,3 @@
+my_function ok
+my_function error: can only concatenate str (not "int") to str Inputs: ('v', 2), {}
+my_function error: my_function() got an unexpected keyword argument 'z' Inputs: ('v', 2), {'z': 45}
