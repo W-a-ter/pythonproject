@@ -15,7 +15,7 @@ def my_file(my_str: str) -> list[dict]:
     """  принимает на вход путь до JSON-файла и
     возвращает список словарей с данными о финансовых транзакциях"""
     try:
-        with open(my_str) as file:
+        with open(my_str, encoding="utf-8") as file:
             info = json.load(file)
             if type(info) is not list:
                 return []
@@ -30,5 +30,3 @@ def my_file(my_str: str) -> list[dict]:
     except json.decoder.JSONDecodeError:
         text.critical('json.DecodeError!!!')
         return []
-
-print(my_file(''))

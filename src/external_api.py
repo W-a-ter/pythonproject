@@ -1,10 +1,12 @@
 import os
+
 import requests
 from dotenv import load_dotenv
+
 load_dotenv()
 
 Apikey = os.getenv('API_KEY')
-r = 'https://api.apilayer.com/exchangerates_data/convert'
+url = os.getenv('url')
 
 
 def my_transactions(transaction: dict) -> float:
@@ -18,5 +20,6 @@ def my_transactions(transaction: dict) -> float:
             'from': transaction['operationAmount']['currency']['code'],
             'to': 'RUB',
         }
-        response = requests.get(str(r), headers=Apikey, params=payload)
+        headers = {"apikey": Apikey}
+        response = requests.get(str(url), headers=headers, params=payload)
         return response.json()['result']
