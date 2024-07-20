@@ -43,8 +43,8 @@ def my_file_csv(my_csv: str) -> list[dict]:
         return readed_file.to_dict(orient="records")
 
 
-def my_file_xls(my_xlc: str) -> list[dict]:
+def my_file_xlsx(my_xlsx: str) -> list[dict]:
     """  принимает на вход путь до XLSX -файла и
     возвращает список словарей с данными о финансовых транзакциях"""
-    xls_file = pd.read_excel(my_xlc)
-    return xls_file.to_dict(orient='records')
+    xlsx_file = pd.read_excel(my_xlsx)
+    return xlsx_file.to_dict(orient='records')
