@@ -3,7 +3,6 @@ import logging
 
 import pandas as pd
 
-
 """ создаем логгер для логирования функций и пишем логи в директорию logs"""
 logging.basicConfig(
     level=logging.DEBUG,
