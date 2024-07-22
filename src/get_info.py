@@ -10,10 +10,9 @@ def get_info(my_transaction: list[dict], string_my: str) -> list[dict]:
     return counter
 
 
-def category_search(transactions: list[dict], counter: list) -> dict:
-    my_result = [transaction["description"] for transaction in
-                 transactions if transaction.get("description", "")
-                 in counter]
+def category_search(transactions: list[dict], counter: str) -> dict:
+    my_result = [transaction['description'] for transaction in transactions
+                 if counter in transaction.get('description', '')]
     return dict(Counter(my_result))
 
 
