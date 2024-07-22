@@ -1,12 +1,14 @@
-from src.utils import my_file, my_file_csv, my_file_xlsx
+from src.generators import filter_by_currency
 from src.get_info import get_info
 from src.processing import sort_by_date
-from src.generators import filter_by_currency
+from src.utils import my_file, my_file_csv, my_file_xlsx
 from src.widget import get_data, mask_account_card
 
-def main():
-    print('Программа: Привет! Добро пожаловать в программу работы с банковскими транзакциями.')
-    user_input= input('''Выберите необходимый пункт меню:
+
+def main_main():
+    print('''Программа: Привет! Добро пожаловать в
+    программу работы с банковскими транзакциями.''')
+    user_input = input('''Выберите необходимый пункт меню:
         1. Получить информацию о транзакциях из JSON-файла
 2. Получить информацию о транзакциях из CSV-файла
 3. Получить информацию о транзакциях из XLSX-файла''')
@@ -19,9 +21,10 @@ def main():
     else:
         print('Программа: Для обработки выбран xlsx-файл.')
         result = my_file_xlsx('../Data/transactions_excel.xlsx')
-
-    user_input_ = input('''Программа: Введите статус, по которому необходимо выполнить фильтрацию. 
-Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING''').lower()
+    user_input_ = input('''Программа: Введите статус,
+по которому необходимо выполнить фильтрацию.
+Доступные для фильтровки
+статусы: EXECUTED, CANCELED, PENDING''').lower()
     while user_input_ not in ['executed', 'canceled', 'pending']:
         print(f'Статус операции {user_input_} недоступен.')
         print(user_input_)
@@ -39,7 +42,8 @@ def main():
     print('Отсортировать операции по дате? Да/Нет')
     user_input = input().lower()
     if user_input == 'да':
-        user_input_1 = input("Отсортировать по возрастанию или по убыванию?").lower()
+        user_input_1 = input('''Отсортировать
+        по возрастанию или по убыванию?''').lower()
         if user_input_1 == 'по возрастанию':
             result = sort_by_date(result)
         else:
@@ -50,7 +54,7 @@ def main():
     if user_input == 'да':
         result = filter_by_currency(result, 'RUB')
 
-    print('''Программа: Отфильтровать список транзакций по определенному слову 
+    print('''Программа: Отфильтровать список транзакций по определенному слову
             в описании? Да/Нет''')
     user_input = input().lower()
     if user_input == 'да':
@@ -70,6 +74,8 @@ def main():
             account_to = mask_account_card(i.get('to', ''))
             amount = i['operationAmount']['amount']
             name = i['operationAmount']['currency']['code']
-            print(f'{date}, {description},\n {account_from}, {account_to}, \n {amount}, {name} ')
+
+            print(f'{date}, {description},'
+                  f'\n {account_from}, {account_to}, \n {amount}, {name} ')
 
     return 'finish'
