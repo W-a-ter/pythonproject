@@ -3,47 +3,95 @@ import logging
 
 import pandas as pd
 
+
 """ создаем логгер для логирования функций и пишем логи в директорию logs"""
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s:%(name)s - %(levelname)s - %(message)s",
-    filename="../logs/utils.log",  # Запись логов в файл
+    filename="logs/utils.log",  # Запись логов в файл
     filemode="w",
 )  # Перезапись файла при каждом запуске
-text = logging.getLogger("utils.py")
+logger = logging.getLogger("utils.py")
 
 
-def my_file(my_str: str) -> list[dict]:
-    """  принимает на вход путь до JSON-файла и
-    возвращает список словарей с данными о финансовых транзакциях"""
+def get_info_transactions(path_file: str) -> list[dict]:
+    """
+    Функция принимает путь до файла и возвращает операции в исходном файле
+    в формате list[dict]
+    """
     try:
-        with open(my_str, encoding="utf-8") as file:
-            info = json.load(file)
-            if type(info) is not list:
+        logger.info("Открываем файл...")
+
+        with open(path_file, encoding="utf-8") as file:
+            try:
+                file_dict = json.load(file)
+                logger.info("смотрим содержимое файла, ждем формат list()")
+
+                if type(file_dict) is not list:
+                    logger.warning("файл не формата list()")
+                    return []
+
+                logger.info("файл корректный, возвращаем содержимое")
+                return file_dict
+
+            except json.JSONDecodeError:
+                logger.warning("файл не может быть прочитан, неверный формат")
                 return []
-            elif info is []:
-                return []
-            else:
-                text.info('функция отработала')
-                return info
+
     except FileNotFoundError:
-        text.warning('File_not_found')
-        return []
-    except json.decoder.JSONDecodeError:
-        text.critical('json.DecodeError!!!')
+        logger.warning("файл не найден, неверный путь до файла")
         return []
 
 
-def my_file_csv(my_csv: str) -> list[dict]:
-    """  принимает на вход путь до CSV -файла и
-    возвращает список словарей с данными о финансовых транзакциях"""
-    with open(my_csv, encoding='utf-8') as file:
-        readed_file = pd.read_csv(file)
-        return readed_file.to_dict(orient="records")
+def get_info_transactions_csv(path_file: str) -> list[dict] | list:
+    """
+    Функция принимает путь до файла и возвращает операции в исходном файле
+    в формате list[dict]
+    """
+    try:
+        logger.info("Открываем файл...")
+
+        with open(path_file, encoding="utf-8") as file:
+            try:
+                file_dict = pd.read_csv(file, delimiter=";")
+                logger.info("смотрим содержимое файла, ждем формат pd.DataFrame")
+
+                if type(file_dict) is not pd.DataFrame:
+                    logger.warning("файл не формата pd.DataFrame")
+                    return []
+
+                logger.info("файл корректный, возвращаем содержимое")
+                return file_dict.to_dict(orient="records")
+            except json.JSONDecodeError:
+                logger.warning("файл не может быть прочитан, неверный формат")
+                return []
+
+    except FileNotFoundError:
+        logger.warning("файл не найден, неверный путь до файла")
+        return []
 
 
-def my_file_xlsx(my_xlsx: str) -> list[dict]:
-    """  принимает на вход путь до XLSX -файла и
-    возвращает список словарей с данными о финансовых транзакциях"""
-    xlsx_file = pd.read_excel(my_xlsx)
-    return xlsx_file.to_dict(orient='records')
+def get_info_transactions_xlsx(path_file: str) -> list[dict] | list:
+    """
+    Функция принимает путь до файла и возвращает операции в исходном файле
+    в формате list[dict]
+    """
+    try:
+        logger.info("Открываем файл...")
+
+        file_dict = pd.read_excel(path_file, index_col=0)
+        logger.info("смотрим содержимое файла, ждем формат pd.DataFrame")
+
+        if type(file_dict) is not pd.DataFrame:
+            logger.warning("файл не формата pd.DataFrame")
+            return []
+
+        logger.info("файл корректный, возвращаем содержимое")
+        return file_dict.to_dict(orient="records")
+    except json.JSONDecodeError:
+        logger.warning("файл не может быть прочитан, неверный формат")
+        return []
+
+    except FileNotFoundError:
+        logger.warning("файл не найден, неверный путь до файла")
+        return []

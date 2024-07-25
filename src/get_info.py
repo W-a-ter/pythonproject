@@ -16,6 +16,6 @@ def category_search(transactions: list[dict], counter: str) -> dict:
     return dict(Counter(my_result))
 
 
-with open('../Data/operations.json', encoding="utf-8") as file:
-    info = json.load(file)
-print(category_search(info, 'Перевод'))
+#with open('/Data/operations.json', encoding="utf-8") as file:
+#    info = json.load(file)
+#print(category_search(info, 'Перевод'))

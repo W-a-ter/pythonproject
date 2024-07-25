@@ -1,7 +1,7 @@
 from src.generators import filter_by_currency
 from src.get_info import get_info
 from src.processing import sort_by_date
-from src.utils import my_file, my_file_csv, my_file_xlsx
+from src.utils import get_info_transactions, get_info_transactions_csv, get_info_transactions_xlsx
 from src.widget import get_data, mask_account_card
 
 
@@ -14,13 +14,13 @@ def main_main():
 3. Получить информацию о транзакциях из XLSX-файла''')
     if user_input == '1':
         print('Программа: Для обработки выбран JSON-файл.')
-        result = my_file('../Data/operations.json')
+        result = get_info_transactions('../Data/operations.json')
     elif user_input == '2':
         print('Программа: Для обработки выбран CSV-файл.')
-        result = my_file_csv('../Data/transactions.csv')
+        result = get_info_transactions_csv('../Data/transactions.csv')
     else:
         print('Программа: Для обработки выбран xlsx-файл.')
-        result = my_file_xlsx('../Data/transactions_excel.xlsx')
+        result = get_info_transactions_xlsx('../Data/transactions_excel.xlsx')
     user_input_ = input('''Программа: Введите статус,
 по которому необходимо выполнить фильтрацию.
 Доступные для фильтровки
@@ -79,3 +79,5 @@ def main_main():
                   f'\n {account_from}, {account_to}, \n {amount}, {name} ')
 
     return 'finish'
+
+print(main_main())
