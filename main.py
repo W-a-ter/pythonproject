@@ -1,7 +1,9 @@
 from src.generators import filter_by_currency
 from src.get_info import get_info
 from src.processing import sort_by_date
-from src.utils import get_info_transactions, get_info_transactions_csv, get_info_transactions_xlsx
+from src.utils import (get_info_transactions,
+                       get_info_transactions_csv,
+                       get_info_transactions_xlsx)
 from src.widget import get_data, mask_account_card
 
 
@@ -77,6 +79,7 @@ def main_main():
 
             print(f'{date}, {description},'
                   f'\n {account_from}, {account_to}, \n {amount}, {name} ')
+
 
     return 'finish'
 

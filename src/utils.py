@@ -54,7 +54,8 @@ def get_info_transactions_csv(path_file: str) -> list[dict] | list:
         with open(path_file, encoding="utf-8") as file:
             try:
                 file_dict = pd.read_csv(file, delimiter=";")
-                logger.info("смотрим содержимое файла, ждем формат pd.DataFrame")
+                logger.info("смотрим содержимое файла,"
+                            "ждем формат pd.DataFrame")
 
                 if type(file_dict) is not pd.DataFrame:
                     logger.warning("файл не формата pd.DataFrame")
@@ -94,4 +95,5 @@ def get_info_transactions_xlsx(path_file: str) -> list[dict] | list:
 
     except FileNotFoundError:
         logger.warning("файл не найден, неверный путь до файла")
+
         return []
