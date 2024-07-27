@@ -1,19 +1,17 @@
 from src.generators import filter_by_currency
 from src.get_info import get_info
 from src.processing import sort_by_date
-from src.utils import (get_info_transactions,
-                       get_info_transactions_csv,
-                       get_info_transactions_xlsx)
+from src.utils import get_info_transactions,get_info_transactions_csv,get_info_transactions_xlsx
 from src.widget import get_data, mask_account_card
 
 
 def main_main():
     print('''Программа: Привет! Добро пожаловать в
     программу работы с банковскими транзакциями.''')
-    user_input = input('''Выберите необходимый пункт меню:
+    user_input = input('''Выберите необходимый пункт меню:\n
         1. Получить информацию о транзакциях из JSON-файла
-2. Получить информацию о транзакциях из CSV-файла
-3. Получить информацию о транзакциях из XLSX-файла''')
+        2. Получить информацию о транзакциях из CSV-файла
+        3. Получить информацию о транзакциях из XLSX-файла''')
     if user_input == '1':
         print('Программа: Для обработки выбран JSON-файл.')
         result = get_info_transactions('../Data/operations.json')
@@ -63,10 +61,10 @@ def main_main():
         enter = input().title()
         result = get_info(result, enter)
 
-    print('Распечатываю итоговый список транзакций...')
+    print('Распечатываю итоговый список транзакций...\n')
     print(f'Всего банковских операций в выборке:{len(result)}')
     if result is []:
-        print('''Не найдено ни одной транзакции, подходящей под ваши
+        return ('''Не найдено ни одной транзакции, подходящей под ваши
                 условия фильтрации''')
     else:
         for i in result:
@@ -80,7 +78,7 @@ def main_main():
             print(f'{date}, {description},'
                   f'\n {account_from}, {account_to}, \n {amount}, {name} ')
 
-
     return 'finish'
+
 
 print(main_main())

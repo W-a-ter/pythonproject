@@ -10,7 +10,6 @@ def test_get_info_transactions(info_transaction):
     assert get_info_transactions("../Data/test.operations.json") == []
 
 
-
 def test_get_info_transaction(test_info_csv, test_info_xlcx):
     info_csv = list(get_info_transactions_csv("../Data/transactions.csv"))
     assert info_csv[0] == test_info_csv

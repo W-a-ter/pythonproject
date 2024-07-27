@@ -1,6 +1,5 @@
 from collections import Counter
 import re
-import json
 
 
 def get_info(my_transaction: list[dict], string_my: str) -> list[dict]:
@@ -13,11 +12,8 @@ def get_info(my_transaction: list[dict], string_my: str) -> list[dict]:
 
 
 def category_search(transactions: list[dict], counter: str) -> dict:
+    """Функция читает исходный файл и преобразует его
+        в список с правильно оформленными именами, без символов и пробелов"""
     my_result = [transaction['description'] for transaction in transactions
                  if counter in transaction.get('description', '')]
     return dict(Counter(my_result))
-
-
-with open('../Data/operations.json', encoding="utf-8") as file:
-    info = json.load(file)
-print(get_info(info, 'Перевод'))
