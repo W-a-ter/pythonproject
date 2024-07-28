@@ -27,7 +27,7 @@ def main_main():
 статусы: EXECUTED, CANCELED, PENDING''').lower()
     while user_input_ not in ['executed', 'canceled', 'pending']:
         print(f'Статус операции {user_input_} недоступен.')
-        print(user_input_)
+        user_input_ = input()
     else:
         if user_input_ == 'executed':
             print('Операции отфильтрованы по статусу "EXECUTED"')
